@@ -19,7 +19,6 @@ $match_str = '^Msi.'
 #ARRAY OF APPS THAT YOU WANT TO HAVE REMOVED
 $badapps = @(
   '{7E265513-8CDA-4631-B696-F40D983F3B07}_is1' 
-  '{59614D31-548E-46E6-AD64-FF6D6E10CF0C}',   # CDBurnerXP         
   '{50229C72-539F-4E65-BEB5-F0491C5074B7}',   # 64 Bit HP CIO Components Installer     
   '{59221905-940E-4B6D-9316-EFCD56952394}',   # Camtasia 2020    
   '{6ADCC315-C91D-4A29-A4EF-A2A27BC82CBC}',   # Boxcryptor       
@@ -27,10 +26,8 @@ $badapps = @(
   '{3257C686-FB94-11E9-A078-000C29C1951D}',   # Foxit PhantomPDF  
   '{C0C2B2B6-3890-48FC-A8F8-60ACC986953D}',   # Node.js
   '{A0397FA8-34ED-4A41-A8C9-30EE0B89C464}',   # Backup and Sync from Google     
-  '{23170F69-40C1-2701-2201-000001000000}',   # 7-Zip 22.01
   '{739B363A-A8C1-4D32-843D-07603700D19F}',   # iTunes         
   '{B749FD2B-4D1A-43BB-8E7B-713FDBDFEA9B}',   # Camtasia 2019
-  '{99A4E14B-FC7B-4CB4-B3EC-76E014558D29}',   # CDBurnerXP (64 bit)
   '{C0FF714D-B7A7-4A30-B9F7-FA8C206B46C3}',   # Camtasia 2021 
   '{842C327E-0C47-4ECB-8921-7DF4B7D2B0B5}',   # LibreOffice 7.2.7.2 
   '{099218A5-A723-43DC-8DB5-6173656A1E94}',   # Dropbox Update Helper
@@ -43,7 +40,6 @@ $badapps = @(
   '{57012794-25b3-4611-b5d2-c4e488530283}',   # Camtasia 2020
   '{d9716ffd-76d1-476b-b102-347db224d132}',   # Camtassia 2021
   'KeePassPasswordSafe2_is1',                 # KeePass Password Safe
-  'Mozilla Firefox 103.0.2 (x86 en-US)',      # Mozilla Firefox 103.0.2
   'Mozilla Thunderbird 102.1.2 (x86 en-US)',  # Mozilla Thunderbird
   'Skype_is1',                                # Skype	
   'WinPcapInst'                               #WinPcap 4.1.3
@@ -66,17 +62,17 @@ Try{
                 if ($app.UninstallString -match $match_str) {
 
                 $argumentlist = "/quiet", "/norestart", $app.PSChildName
-                #Start-Process msiexec.exe -Wait -ArgumentList $argumentlist
-                    write-host $app.UninstallString
+                Start-Process msiexec.exe -Wait -ArgumentList $argumentlist
+                   # write-host $app.UninstallString
                 }
                 
                else{
                 $app.UninstallString.trim() |Out-String -Stream |Select-String -Pattern '"([^"]*)"' |
                     ForEach-Object {
                     $first, $last = $_.Matches[0].Groups[1..2].Value
-                    write-host $last "," $first
+                    # write-host $last "," $first
                     $args = " /uninstall", "/silent","/s" 
-                    #Start-Process $first -ArgumentList $args
+                    Start-Process $first -ArgumentList $args
                     }
                 }
         }
