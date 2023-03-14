@@ -47,7 +47,7 @@ $badapps = @(
   'Skype_is1',                                # Skype	
   'WinPcapInst'                               #WinPcap 4.1.3
   )
-    Start-Process -FilePath "C:\Windows\SysWOW64\msiexec.exe" -ArgumentList "/x /qn T:\LibreOffice_7.5._Win_x86-64.exe"
+    Start-Process -FilePath "C:\Windows\SysWOW64\msiexec.exe" -ArgumentList "/x /qn T:\LibreOffice_7.5.1_Win_x86-64.exe"
 	  Start-Process -FilePath "C:\Program Files\Mozilla Firefox\uninstall\helper.exe" -ArgumentList "/s"
 	  start-process -FilePath "C:\Program Files (x86)\SeaMonkey\uninstall\helper.exe" -ArgumentList "/s"
 	  start-process -FilePath "C:\Program Files\SeaMonkey\uninstall\helper.exe" -ArgumentList "/s"
