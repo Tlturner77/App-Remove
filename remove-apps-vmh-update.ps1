@@ -53,9 +53,9 @@ $badapps = @(
 	  start-process -FilePath "C:\Program Files\Mozilla Thunderbird\uninstall\helper.exe" -ArgumentList "/s"
 	  start-process -FilePath "C:\Program Files\Mozilla Firefox\uninstall\helper.exe" -ArgumentList "/s"
 	  start-process -FilePath "C:\Program Files (x86)\Mozilla Maintenance Service\uninstall.exe" -argumentlist "/s"
-      start-process -FilePath "C:\Program Files\7-Zip\uninstall.exe" -argumentlist "/S"
-      start-process -FilePath "C:\Program Files\CDBurnerXP\unins000.exe" -argumentlist "/VERYSILENT /NORESTART"
-      start-process -FilePath "C:\Program Files (x86)\CDBurnerXP\unins000.exe" -argumentlist "/VERYSILENT /NORESTART"
+    start-process -FilePath "C:\Program Files\7-Zip\uninstall.exe" -argumentlist "/S"
+    start-process -FilePath "C:\Program Files\CDBurnerXP\unins000.exe" -argumentlist "/VERYSILENT /NORESTART"
+    start-process -FilePath "C:\Program Files (x86)\CDBurnerXP\unins000.exe" -argumentlist "/VERYSILENT /NORESTART"
 
 Try{
     foreach( $app in $installed_apps) {
@@ -63,8 +63,9 @@ Try{
         if ($app.PSChildName -in $badapps) {
 
                 if ($app.UninstallString -match $match_str) {
-                write-host "Removing IF: " $app.DisplayName
+                
                 $argumentlist = "/quiet", "/norestart", $app.PSChildName
+                write-host "Removing IF: " $app.DisplayName " Command: " $argumentlist
                 Start-Process msiexec.exe -Wait -ArgumentList $argumentlist
                    # write-host $app.UninstallString
                 }
@@ -72,10 +73,11 @@ Try{
                else{
                 $app.UninstallString.trim() |Out-String -Stream |Select-String -Pattern '"([^"]*)"' |
                     ForEach-Object {
-                    write-host "Removing ELSE: " $app.DisplayName
+                    
                     $first, $last = $_.Matches[0].Groups[1..2].Value
                     # write-host $last "," $first
                     $args = " /uninstall", "/silent","/s" 
+                    write-host "Removing ELSE: " $app.DisplayName "Command: " $first
                     Start-Process $first -ArgumentList $args
                     }
                 }
