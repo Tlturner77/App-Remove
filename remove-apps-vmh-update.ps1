@@ -64,7 +64,7 @@ Try{
 
                 if ($app.UninstallString -match $match_str) {
                 
-                $argumentlist =  $app.PSChildName ,"/qn", "/quiet", "/norestart"
+                $argumentlist =  "/qn", "/x", $app.PSChildName 
                 write-host "Removing IF: " $app.DisplayName " Command: " $argumentlist
                 Start-Process msiexec.exe -Wait -ArgumentList $argumentlist
                    # write-host $app.UninstallString
