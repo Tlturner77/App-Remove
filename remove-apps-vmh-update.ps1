@@ -60,7 +60,7 @@ Try{
         if ($app.PSChildName -in $badapps) {
 
                 if ($app.UninstallString -match $match_str) {
-
+                write-host "Removing IF: " $app.DisplayName
                 $argumentlist = "/quiet", "/norestart", $app.PSChildName
                 Start-Process msiexec.exe -Wait -ArgumentList $argumentlist
                    # write-host $app.UninstallString
@@ -69,6 +69,7 @@ Try{
                else{
                 $app.UninstallString.trim() |Out-String -Stream |Select-String -Pattern '"([^"]*)"' |
                     ForEach-Object {
+                    write-host "Removing ELSE: " $app.DisplayName
                     $first, $last = $_.Matches[0].Groups[1..2].Value
                     # write-host $last "," $first
                     $args = " /uninstall", "/silent","/s" 
