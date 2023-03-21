@@ -61,7 +61,7 @@ $badapps = @(
     start-process -FilePath "C:\Program Files\7-Zip\uninstall.exe" -argumentlist "/S"
     start-process -FilePath "C:\Program Files\CDBurnerXP\unins000.exe" -argumentlist "/VERYSILENT /NORESTART"
     start-process -FilePath "C:\Program Files (x86)\CDBurnerXP\unins000.exe" -argumentlist "/VERYSILENT /NORESTART"
-    Start-Process -FilePath "msiexec.exe" -ArgumentList "/x {767359F7-2B5F-4D4E-B22A-7CE210BCE249} /quiet"
+    Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {767359F7-2B5F-4D4E-B22A-7CE210BCE249} /quiet"
 Try{
     foreach( $app in $installed_apps) {
         # CHECKS THE REGISTRY TO VALIDATE THAT YOU CAN REMOVE THE FILE VIA MsiExe.exe COMMAND
