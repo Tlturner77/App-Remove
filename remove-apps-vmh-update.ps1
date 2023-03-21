@@ -71,8 +71,8 @@ Try{
                 
                 $argumentlist =  "/x", $app.PSChildName , "/quiet /norestart"
                 write-host "Removing IF: " $app.DisplayName " Command: " "'$argumentlist'"
-                $retval = Start-Process msiexec.exe -Wait -ArgumentList "$argumentlist"
-                write-host "full command: " $retval
+                Start-Process msiexec.exe -Wait -ArgumentList "'$argumentlist'"
+                # write-host "full command: " $retval
                 }
                 
                else{
