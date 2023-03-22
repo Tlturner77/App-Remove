@@ -85,7 +85,7 @@ $badapps = @(
                     # write-host $last "," $first
                     $args = " /uninstall", "/silent","/s" 
                     write-host "Removing ELSE: " $app.DisplayName "Command: " $first
-                    Start-Process $first -ArgumentList $args
+                    Start-Process -Wait $first -ArgumentList $args
                     }
                 }
         }
