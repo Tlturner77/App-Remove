@@ -19,8 +19,8 @@ $match_str = '^Msi.'
 #ARRAY OF APPS THAT YOU WANT TO HAVE REMOVED
 $badapps = @(
   '{FDB77018-8B16-456D-AAC9-0CFA01A36D92}',   #putty
-  '{4748282E-2448-11E8-81BC-53A8D56EE868}',   #GeoGebra Classic
-  '{D86F0E67-2C02-4DFF-A46A-6871BA809A51}',   #OpenOffice 4.1.13 
+  '{4748282E-2448-11E8-81BC-53A8D56EE868}',   # GeoGebra Classic
+  '{D86F0E67-2C02-4DFF-A46A-6871BA809A51}',   # OpenOffice 4.1.13 
   '{AC76BA86-7AD7-FFFF-7B44-AE1401753200}',   # Adobe Acrobat MUI
   '{9A4EBA01-3CB0-4941-88D0-63CC54279A83}',   #boxcryptor 
   '{767359F7-2B5F-4D4E-B22A-7CE210BCE249}',   # Node.js update
@@ -63,6 +63,7 @@ $badapps = @(
     start-process -FilePath "C:\Program Files (x86)\CDBurnerXP\unins000.exe" -Wait -argumentlist "/VERYSILENT /NORESTART"
     Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {767359F7-2B5F-4D4E-B22A-7CE210BCE249} /quiet"
     Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {C0C2B2B6-3890-48FC-A8F8-60ACC986953D} /quiet"
+    Powershell.exe -ExecutionPolicy Bypass T:\Deploy-Dropbox.ps1 -DeploymentType "Uninstall" -DeployMode "NonInteractive"
 
     Try{
     foreach( $app in $installed_apps) {
