@@ -94,74 +94,74 @@ $badapps = @(
     ################### Remove SeaMonkey ###################    
     if(test-path "C:\Program Files (x86)\SeaMonkey\uninstall\helper.exe") 
     {
-      LogWrite "Remove SeaMonkey"
+      LogWrite "Removing SeaMonkey"
       start-process -FilePath "C:\Program Files (x86)\SeaMonkey\uninstall\helper.exe" -Wait -ArgumentList "/s"
     } 
     
     ################### Remove Thunderbird ################### 
     if(test-path "C:\Program Files\Mozilla Thunderbird\uninstall\helper.exe")
     {
-      LogWrite "Remove Thunderbird"
+      LogWrite "Removing Thunderbird"
       start-process -FilePath "C:\Program Files\Mozilla Thunderbird\uninstall\helper.exe" -Wait -ArgumentList "/s"
     }
     ################### Remove Thunderbird 32bit ################### 
     if(test-path "C:\Program Files (x86)\Mozilla Thunderbird\uninstall\helper.exe" )
     {
-      LogWrite "Remove Thunderbird 32bit"
+      LogWrite "Removing Thunderbird 32bit"
       start-process -FilePath "C:\Program Files (x86)\Mozilla Thunderbird\uninstall\helper.exe" -Wait -ArgumentList "/s"
     }
     
     ################### Remove Firefox 32bit ################### 
     if(test-path "C:\Program Files (x86)\Mozilla Firefox\uninstall\helper.exe")
     {
-      LogWrite "Remove Firefox 32bit"
+      LogWrite "Removing Firefox 32bit"
       start-process -FilePath "C:\Program Files (x86)\Mozilla Firefox\uninstall\helper.exe" -Wait -ArgumentList "/s"
     }
     ################### Remove Mozilla Maintenance ################### 
     if(test-path "C:\Program Files (x86)\Mozilla Maintenance Service\uninstall.exe")
     {
-      LogWrite "Remove Mozilla Maintenance"
+      LogWrite "Removing Mozilla Maintenance"
       start-process -FilePath "C:\Program Files (x86)\Mozilla Maintenance Service\uninstall.exe" -Wait -argumentlist "/s"
     }
     
     ################### Remove 7zip 32bit ################### 
     if(test-path "C:\Program Files (x86)\7-Zip\uninstall.exe")
     {
-      LogWrite "Remove 7zip 32bit"
+      LogWrite "Removing 7zip 32bit"
       start-process -FilePath "C:\Program Files (x86)\7-Zip\uninstall.exe" -Wait -argumentlist "/S"
     }
 
     ################### Remove 7zip 64bit ################### 
     if(test-path "C:\Program Files\7-Zip\uninstall.exe" )
     {
-      LogWrite "Remove 7zip 64bit"
+      LogWrite "Removing 7zip 64bit"
       start-process -FilePath "C:\Program Files\7-Zip\uninstall.exe" -Wait -argumentlist "/S"
     }
     
     ################### Remove CDBurnerXP 64bit ################### 
      if(test-path "C:\Program Files\CDBurnerXP\unins000.exe")
      {
-      LogWrite "Remove CDBurnerXP 64bit"
+      LogWrite "Removing CDBurnerXP 64bit"
       start-process -FilePath "C:\Program Files\CDBurnerXP\unins000.exe" -Wait -argumentlist "/VERYSILENT /NORESTART"
      }
     
     ################### Remove CDBurnerXP 32bit ################### 
     if(test-path "C:\Program Files (x86)\CDBurnerXP\unins000.exe" )
     {
-      LogWrite "Remove CDBurnerXP 32bit"
+      LogWrite "Removing CDBurnerXP 32bit"
       start-process -FilePath "C:\Program Files (x86)\CDBurnerXP\unins000.exe" -Wait -argumentlist "/VERYSILENT /NORESTART"
     }
     ################### Remove Pzip 64bit ###################
    if(test-path "C:\Program Files\PeaZip\unins000.exe")
     {
-      LogWrite "Remove PZip 64bit"
+      LogWrite "Removing PZip 64bit"
       start-process -FilePath "C:\Program Files\PeaZip\unins000.exe" -Wait -argumentlist "/VERYSILENT /NORESTART"
     }
 
     ################### Remove Pzip 32bit ###################
     if(test-path "C:\Program Files\PeaZip\unins000.exe")
     {
-      LogWrite "Remove PZip 32bit"
+      LogWrite "Removing PZip 32bit"
       start-process -FilePath "C:\Program Files (x86)\PeaZip\unins000.exe" -Wait -argumentlist "/VERYSILENT /NORESTART"
     }
 
@@ -174,7 +174,7 @@ $badapps = @(
                 if ($app.UninstallString -match $match_str) {
                 
                 $argumentlist =  "/x", $app.PSChildName , "/quiet /norestart"
-                LogWrite $app.DisplayName
+                LogWrite "Removing " $app.DisplayName
                 write-host "Removing IF: " $app.DisplayName " Command: " $argumentlist
                 Start-Process msiexec.exe -Wait -ArgumentList $argumentlist
                 # write-host "full command: " $retval
@@ -187,7 +187,7 @@ $badapps = @(
                     $first, $last = $_.Matches[0].Groups[1..2].Value
                     # write-host $last "," $first
                     $aargs = " /uninstall", "/silent","/s" 
-                    LogWrite $app.DisplayName
+                    LogWrite "Removing " $app.DisplayName
                     write-host "Removing ELSE: " $app.DisplayName "Command: " $first
                     Start-Process -Wait $first -ArgumentList $aargs
                     }
