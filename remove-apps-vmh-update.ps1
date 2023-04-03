@@ -6,7 +6,11 @@
 ########################################
 $open_file = "Open File" 
 out-file -Append -FilePath C:\IT\remove-apps.log -InputObject $open_file
-$installed_apps = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*  |Select-Object DisplayName,PSChildName, UninstallString
+$installed_apps32 = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*  |Select-Object DisplayName,PSChildName, UninstallString
+$installed_apps64 = Get-ItemProperty HKLM:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*  |Select-Object DisplayName,PSChildName, UninstallString
+$installed_apps = $installed_apps32 + $installed_apps64
+
+#$installed_apps = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*  |Select-Object DisplayName,PSChildName, UninstallString
 $Logfile = "C:\IT\remove-apps.log"
 Function LogWrite
 {
