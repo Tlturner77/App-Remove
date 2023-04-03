@@ -7,7 +7,13 @@
 $open_file = "Open File" 
 out-file -Append -FilePath C:\IT\remove-apps.log -InputObject $open_file
 $installed_apps = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*  |Select-Object DisplayName,PSChildName, UninstallString
+$Logfile = "C:\IT\remove-apps.log"
+Function LogWrite
+{
+Param ([string]$logstring)
 
+Add-content $Logfile -value $logstring
+}
 $match_str = '^Msi.'
 
 $winzipargs = "/x t:\wzipse40.msi /qn"
@@ -19,6 +25,7 @@ $winzipargs = "/x t:\wzipse40.msi /qn"
 
 #ARRAY OF APPS THAT YOU WANT TO HAVE REMOVED
 $badapps = @(
+  '{FADD87FD-83C7-40B4-9180-EA9371C1A348}',   #Open Office
   '{F27DBA46-80E1-4858-9285-19198FFFB43D}',   #GOOGLE EARTH TEST SYSTEM
   '{4EEF2644-700F-46F8-9655-915145248986}',   #PUTTY TEST SYSTEM
   '{2408F291-807B-43A8-9731-61C35F046E1B}',   #ROYAL TS TEST SYSTEM
@@ -48,7 +55,6 @@ $badapps = @(
   '{96FD33BF-A8E3-4E1C-93AF-8CD5DD2817EC}',   # Royal TS
   '{D86F0E67-2C02-4DFF-A46A-6871BA809A51}',   # OpenOffice 4.1.13
   '{DA3490CA-0264-42EC-9301-0ECEC0B1D584}',   # Microsoft Azure CLI
-  '{3C4DF0FD-95CF-4F7B-A816-97CEF616948F}',   # HPE System Management Homepage
   '{57012794-25b3-4611-b5d2-c4e488530283}',   # Camtasia 2020
   '{d9716ffd-76d1-476b-b102-347db224d132}',   # Camtassia 2021
   'KeePassPasswordSafe2_is1',                 # KeePass Password Safe
@@ -57,19 +63,31 @@ $badapps = @(
   'WinPcapInst'                               #WinPcap 4.1.3
   )
    # Start-Process msiexec.exe -ArgumentList $winzipargs
+
     Start-Process -FilePath "C:\Windows\SysWOW64\msiexec.exe" -Wait -ArgumentList "/x T:\LibreOffice_7.5.1_Win_x86-64.msi /qn"
-	  Start-Process -FilePath "C:\Program Files\Mozilla Firefox\uninstall\helper.exe" -Wait -ArgumentList "/s"
-	  start-process -FilePath "C:\Program Files (x86)\SeaMonkey\uninstall\helper.exe" -Wait -ArgumentList "/s"
-	  start-process -FilePath "C:\Program Files\SeaMonkey\uninstall\helper.exe" -Wait -ArgumentList "/s"
-	  start-process -FilePath "C:\Program Files\Mozilla Thunderbird\uninstall\helper.exe" -Wait -ArgumentList "/s"
-	  start-process -FilePath "C:\Program Files\Mozilla Firefox\uninstall\helper.exe" -Wait -ArgumentList "/s"
-	  start-process -FilePath "C:\Program Files (x86)\Mozilla Maintenance Service\uninstall.exe" -Wait -argumentlist "/s"
+    if(!(test-path"C:\Program Files\Mozilla Firefox\uninstall\helper.exe"))
+    { 
+      Logwrite "Removing Firefox"
+      Start-Process -FilePath "C:\Program Files\Mozilla Firefox\uninstall\helper.exe" -Wait -ArgumentList "/s"
+    }
+   
+    Start-Process -FilePath "C:\Program Files (x86)\Foxit Software\Foxit PDF Reader\unins000.exe" -Wait -ArgumentList "/VERYSILENT /NORESTART"
+    Start-Process -FilePath "C:\Program Files (x86)\TeamViewer\uninstall.exe" -Wait -ArgumentList "/VERYSILENT /NORESTART"
+    Start-Process -FilePath "C:\Windows\SysWOW64\msiexec.exe" -Wait -ArgumentList "/x C:\IT\LibreOffice_7.5.2_Win_x86-64.msi /qn"
+    Start-Process -FilePath "C:\Program Files\Mozilla Firefox\uninstall\helper.exe" -Wait -ArgumentList "/s"
+    start-process -FilePath "C:\Program Files (x86)\SeaMonkey\uninstall\helper.exe" -Wait -ArgumentList "/s"
+    start-process -FilePath "C:\Program Files\SeaMonkey\uninstall\helper.exe" -Wait -ArgumentList "/s"
+    start-process -FilePath "C:\Program Files\Mozilla Thunderbird\uninstall\helper.exe" -Wait -ArgumentList "/s"
+    start-process -FilePath "C:\Program Files (x86)\Mozilla Thunderbird\uninstall\helper.exe" -Wait -ArgumentList "/s"
+    start-process -FilePath "C:\Program Files (x86)\Mozilla Firefox\uninstall\helper.exe" -Wait -ArgumentList "/s"
+    start-process -FilePath "C:\Program Files (x86)\Mozilla Maintenance Service\uninstall.exe" -Wait -argumentlist "/s"
+    start-process -FilePath "C:\Program Files (x86)\7-Zip\uninstall.exe" -Wait -argumentlist "/S"
     start-process -FilePath "C:\Program Files\7-Zip\uninstall.exe" -Wait -argumentlist "/S"
     start-process -FilePath "C:\Program Files\CDBurnerXP\unins000.exe" -Wait -argumentlist "/VERYSILENT /NORESTART"
     start-process -FilePath "C:\Program Files (x86)\CDBurnerXP\unins000.exe" -Wait -argumentlist "/VERYSILENT /NORESTART"
     Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {767359F7-2B5F-4D4E-B22A-7CE210BCE249} /quiet"
     Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {C0C2B2B6-3890-48FC-A8F8-60ACC986953D} /quiet"
-    Powershell.exe "T:\PSAppDeployToolkit_v3.8.4\Deploy-Dropbox.ps1" -DeploymentType "Uninstall" -DeployMode "NonInteractive"
+    Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {59614D31-548E-46E6-AD64-FF6D6E10CF0C} /qn"
 
     Try{
     foreach( $app in $installed_apps) {
@@ -90,9 +108,9 @@ $badapps = @(
                     
                     $first, $last = $_.Matches[0].Groups[1..2].Value
                     # write-host $last "," $first
-                    $args = " /uninstall", "/silent","/s" 
+                    $aargs = " /uninstall", "/silent","/s" 
                     write-host "Removing ELSE: " $app.DisplayName "Command: " $first
-                    Start-Process -Wait $first -ArgumentList $args
+                    Start-Process -Wait $first -ArgumentList $aargs
                     }
                 }
         }
