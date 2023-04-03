@@ -65,6 +65,11 @@ $badapps = @(
    # Start-Process msiexec.exe -ArgumentList $winzipargs
 
     Start-Process -FilePath "C:\Windows\SysWOW64\msiexec.exe" -Wait -ArgumentList "/x T:\LibreOffice_7.5.1_Win_x86-64.msi /qn"
+    Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {767359F7-2B5F-4D4E-B22A-7CE210BCE249} /quiet"
+    Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {C0C2B2B6-3890-48FC-A8F8-60ACC986953D} /quiet"
+    Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {59614D31-548E-46E6-AD64-FF6D6E10CF0C} /qn"
+    Start-Process -FilePath "C:\Windows\SysWOW64\msiexec.exe" -Wait -ArgumentList "/x C:\IT\LibreOffice_7.5.2_Win_x86-64.msi /qn"
+
     if(!(test-path"C:\Program Files\Mozilla Firefox\uninstall\helper.exe"))
     { 
       Logwrite "Removing Firefox"
@@ -73,7 +78,6 @@ $badapps = @(
    
     Start-Process -FilePath "C:\Program Files (x86)\Foxit Software\Foxit PDF Reader\unins000.exe" -Wait -ArgumentList "/VERYSILENT /NORESTART"
     Start-Process -FilePath "C:\Program Files (x86)\TeamViewer\uninstall.exe" -Wait -ArgumentList "/VERYSILENT /NORESTART"
-    Start-Process -FilePath "C:\Windows\SysWOW64\msiexec.exe" -Wait -ArgumentList "/x C:\IT\LibreOffice_7.5.2_Win_x86-64.msi /qn"
     Start-Process -FilePath "C:\Program Files\Mozilla Firefox\uninstall\helper.exe" -Wait -ArgumentList "/s"
     start-process -FilePath "C:\Program Files (x86)\SeaMonkey\uninstall\helper.exe" -Wait -ArgumentList "/s"
     start-process -FilePath "C:\Program Files\SeaMonkey\uninstall\helper.exe" -Wait -ArgumentList "/s"
@@ -85,9 +89,7 @@ $badapps = @(
     start-process -FilePath "C:\Program Files\7-Zip\uninstall.exe" -Wait -argumentlist "/S"
     start-process -FilePath "C:\Program Files\CDBurnerXP\unins000.exe" -Wait -argumentlist "/VERYSILENT /NORESTART"
     start-process -FilePath "C:\Program Files (x86)\CDBurnerXP\unins000.exe" -Wait -argumentlist "/VERYSILENT /NORESTART"
-    Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {767359F7-2B5F-4D4E-B22A-7CE210BCE249} /quiet"
-    Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {C0C2B2B6-3890-48FC-A8F8-60ACC986953D} /quiet"
-    Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {59614D31-548E-46E6-AD64-FF6D6E10CF0C} /qn"
+
 
     Try{
     foreach( $app in $installed_apps) {
