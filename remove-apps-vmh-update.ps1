@@ -10,7 +10,7 @@ $installed_apps = Get-ItemProperty HKLM:\Software\WOW6432Node\Microsoft\Windows\
 
 $match_str = '^Msi.'
 
-$winzipargs = "/x t:\wzcline60-64.msi /qn"
+$winzipargs = "/x t:\wzipse40.msi /qn"
 
 #THE FOLLOWING STRINGS ARE NOT IN USE AT THIS TIME
 # $remove_str = 'MsiExec.exe /quiet /x '
@@ -53,7 +53,6 @@ $badapps = @(
   'WinPcapInst'                               #WinPcap 4.1.3
   )
     Start-Process msiexec.exe -ArgumentList $winzipargs
-    Start-Process -Filepath "msiexec.exe /i t:\wzcline60-64.msi /qn"
     Start-Process -FilePath "C:\Windows\SysWOW64\msiexec.exe" -Wait -ArgumentList "/x T:\LibreOffice_7.5.1_Win_x86-64.msi /qn"
 	  Start-Process -FilePath "C:\Program Files\Mozilla Firefox\uninstall\helper.exe" -Wait -ArgumentList "/s"
 	  start-process -FilePath "C:\Program Files (x86)\SeaMonkey\uninstall\helper.exe" -Wait -ArgumentList "/s"
@@ -66,7 +65,7 @@ $badapps = @(
     start-process -FilePath "C:\Program Files (x86)\CDBurnerXP\unins000.exe" -Wait -argumentlist "/VERYSILENT /NORESTART"
     Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {767359F7-2B5F-4D4E-B22A-7CE210BCE249} /quiet"
     Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {C0C2B2B6-3890-48FC-A8F8-60ACC986953D} /quiet"
-    Powershell.exe -ExecutionPolicy Bypass T:\Deploy-Dropbox.ps1 -DeploymentType "Uninstall" -DeployMode "NonInteractive"
+    Powershell.exe "T:\PSAppDeployToolkit_v3.8.4\Deploy-Dropbox.ps1" -DeploymentType "Uninstall" -DeployMode "NonInteractive"
 
     Try{
     foreach( $app in $installed_apps) {
