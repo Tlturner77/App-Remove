@@ -82,14 +82,31 @@ $badapps = @(
       Start-Process -FilePath "C:\Program Files\Mozilla Firefox\uninstall\helper.exe" -Wait -ArgumentList "/s"
     }
    
-    ################### Remove Foxit ###################
+    ################### Remove Foxit 32bit ###################
     If(test-path "C:\Program Files (x86)\Foxit Software\Foxit PDF Reader\unins000.exe" )
     {
-      LogWrite "Removing Foxit"
+      LogWrite "Removing Foxit 32bit"
       Start-Process -FilePath "C:\Program Files (x86)\Foxit Software\Foxit PDF Reader\unins000.exe" -Wait -ArgumentList "/VERYSILENT /NORESTART"
     }
-    ################### Remove Teamviewer ###################
-    Start-Process -FilePath "C:\Program Files (x86)\TeamViewer\uninstall.exe" -Wait -ArgumentList "/VERYSILENT /NORESTART"
+    ################### Remove Foxit 64bit ###################
+    If(test-path "C:\Program Files\Foxit Software\Foxit PDF Reader\unins000.exe" )
+    {
+      LogWrite "Removing Foxit 64bit"
+      Start-Process -FilePath "C:\Program Files\Foxit Software\Foxit PDF Reader\unins000.exe" -Wait -ArgumentList "/VERYSILENT /NORESTART"
+    }
+
+    ################### Remove Teamviewer 32bit ###################
+    if(test-path "C:\Program Files (x86)\TeamViewer\uninstall.exe")
+    {
+      LogWrite "Removing Teamviewer 32bit"
+      Start-Process -FilePath "C:\Program Files (x86)\TeamViewer\uninstall.exe" -Wait -ArgumentList "/VERYSILENT /NORESTART"
+    }
+    ################### Remove Teamviewer 64bit ###################
+    if(test-path "C:\Program Files\TeamViewer\uninstall.exe")
+    {
+      LogWrite "Removing Teamviewer 64bit"
+      Start-Process -FilePath "C:\Program Files\TeamViewer\uninstall.exe" -Wait -ArgumentList "/VERYSILENT /NORESTART"
+    }
     
     ################### Remove SeaMonkey ###################    
     if(test-path "C:\Program Files (x86)\SeaMonkey\uninstall\helper.exe") 
@@ -101,7 +118,7 @@ $badapps = @(
     ################### Remove Thunderbird ################### 
     if(test-path "C:\Program Files\Mozilla Thunderbird\uninstall\helper.exe")
     {
-      LogWrite "Removing Thunderbird"
+      LogWrite "Removing Thunderbird 64bit"
       start-process -FilePath "C:\Program Files\Mozilla Thunderbird\uninstall\helper.exe" -Wait -ArgumentList "/s"
     }
     ################### Remove Thunderbird 32bit ################### 
