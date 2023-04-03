@@ -74,7 +74,7 @@ $badapps = @(
     Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {59614D31-548E-46E6-AD64-FF6D6E10CF0C} /qn"
     Start-Process -FilePath "C:\Windows\SysWOW64\msiexec.exe" -Wait -ArgumentList "/x C:\IT\LibreOffice_7.5.2_Win_x86-64.msi /qn"
 
-    if(test-path"C:\Program Files\Mozilla Firefox\uninstall\helper.exe")
+    if(test-path "C:\Program Files\Mozilla Firefox\uninstall\helper.exe")
     { 
       Logwrite "Removing Firefox"
       Start-Process -FilePath "C:\Program Files\Mozilla Firefox\uninstall\helper.exe" -Wait -ArgumentList "/s"
