@@ -215,4 +215,3 @@ $badapps = @(
 Catch {
   out-file -Append -FilePath C:\IT\remove-apps.log -InputObject $_  
 }
-#}
