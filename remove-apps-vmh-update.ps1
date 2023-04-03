@@ -6,7 +6,7 @@
 ########################################
 $open_file = "Open File" 
 out-file -Append -FilePath C:\IT\remove-apps.log -InputObject $open_file
-$installed_apps = Get-ItemProperty HKLM:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*  |Select-Object DisplayName,PSChildName, UninstallString
+$installed_apps = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*  |Select-Object DisplayName,PSChildName, UninstallString
 
 $match_str = '^Msi.'
 
@@ -56,7 +56,7 @@ $badapps = @(
   'Skype_is1',                                # Skype	
   'WinPcapInst'                               #WinPcap 4.1.3
   )
-    Start-Process msiexec.exe -ArgumentList $winzipargs
+   # Start-Process msiexec.exe -ArgumentList $winzipargs
     Start-Process -FilePath "C:\Windows\SysWOW64\msiexec.exe" -Wait -ArgumentList "/x T:\LibreOffice_7.5.1_Win_x86-64.msi /qn"
 	  Start-Process -FilePath "C:\Program Files\Mozilla Firefox\uninstall\helper.exe" -Wait -ArgumentList "/s"
 	  start-process -FilePath "C:\Program Files (x86)\SeaMonkey\uninstall\helper.exe" -Wait -ArgumentList "/s"
