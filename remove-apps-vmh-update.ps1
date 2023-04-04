@@ -80,13 +80,13 @@ $badapps = @(
     if(test-path "C:\Program Files (x86)\Dropbox\Client\DropboxUninstaller.exe")
     {
       LogWrite "Removing Drobpox 32bit"
-      Start-Process "C:\Program Files (x86)\Dropbox\Client\DropboxUninstaller.exe" -Wait -ArgumentList "/InstallType:MACHINE"
+      Start-Process "C:\Program Files (x86)\Dropbox\Client\DropboxUninstaller.exe" -Wait -ArgumentList "/S /InstallType:MACHINE"
     }
     ################### Remove dropbox ###################
     if(test-path "C:\Program Files\Dropbox\Client\DropboxUninstaller.exe")
     {
       LogWrite "Removing Drobpox"
-      Start-Process "C:\Program Files\Dropbox\Client\DropboxUninstaller.exe" -Wait -ArgumentList "/InstallType:MACHINE"
+      Start-Process "C:\Program Files\Dropbox\Client\DropboxUninstaller.exe" -Wait -ArgumentList "/S /InstallType:MACHINE"
     }   
     ################### Remove Firefox ###################
     if(test-path "C:\Program Files\Mozilla Firefox\uninstall\helper.exe")
