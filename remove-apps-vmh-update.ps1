@@ -29,7 +29,6 @@ $winzipargs = "/x t:\wzipse40.msi /qn"
 
 #ARRAY OF APPS THAT YOU WANT TO HAVE REMOVED
 $badapps = @(
-  
   '{FADD87FD-83C7-40B4-9180-EA9371C1A348}',   # Open Office
   '{F27DBA46-80E1-4858-9285-19198FFFBF3D}',   # GOOGLE EARTH TEST SYSTEM
   '{4EEF2644-700F-46F8-9655-915145248986}',   # PUTTY TEST SYSTEM
@@ -70,9 +69,9 @@ $badapps = @(
    # Start-Process msiexec.exe -ArgumentList $winzipargs
 
     
-    Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {767359F7-2B5F-4D4E-B22A-7CE210BCE249} /quiet"
-    Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {C0C2B2B6-3890-48FC-A8F8-60ACC986953D} /quiet"
-    Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {59614D31-548E-46E6-AD64-FF6D6E10CF0C} /qn"
+   ## Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {767359F7-2B5F-4D4E-B22A-7CE210BCE249} /quiet"
+   ## Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {C0C2B2B6-3890-48FC-A8F8-60ACC986953D} /quiet"
+   ## Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {59614D31-548E-46E6-AD64-FF6D6E10CF0C} /qn"
     # Start-Process -FilePath "C:\Windows\SysWOW64\msiexec.exe" -Wait -ArgumentList "/x C:\IT\LibreOffice_7.5.2_Win_x86-64.msi /qn"
     
     ################### Remove LibreOffice ###################
