@@ -77,7 +77,7 @@ $badapps = @(
     if(test-path "C:\Program Files\LibreOffice")
     { 
       LogWrite "Remove LibreOffice"
-      Start-Process -FilePath "C:\Windows\SysWOW64\msiexec.exe" -Wait -ArgumentList "/x T:\LibreOffice_7.5.1_Win_x86-64.msi /qn"
+      Start-Process -FilePath "C:\Windows\SysWOW64\msiexec.exe" -Wait -ArgumentList "/x C:\IT\LibreOffice_7.5.1_Win_x86-64.msi /qn"
     }
 
     ################### Remove dropbox 32bit ###################

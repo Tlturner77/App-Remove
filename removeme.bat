@@ -1,0 +1,1 @@
+powershell -ExecutionPolicy Unrestricted -File C:\IT\remove-apps-vmh-update.ps1
