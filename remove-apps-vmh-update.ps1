@@ -118,13 +118,13 @@ $badapps = @(
     if(test-path "C:\Program Files (x86)\TeamViewer\uninstall.exe")
     {
       LogWrite "Removing Teamviewer 32bit"
-      Start-Process -FilePath "C:\Program Files (x86)\TeamViewer\uninstall.exe" -Wait -ArgumentList "/VERYSILENT /NORESTART"
+      Start-Process -FilePath "C:\Program Files (x86)\TeamViewer\uninstall.exe" -Wait -ArgumentList "/S"
     }
     ################### Remove Teamviewer 64bit ###################
     if(test-path "C:\Program Files\TeamViewer\uninstall.exe")
     {
       LogWrite "Removing Teamviewer 64bit"
-      Start-Process -FilePath "C:\Program Files\TeamViewer\uninstall.exe" -Wait -ArgumentList "/VERYSILENT /NORESTART"
+      Start-Process -FilePath "C:\Program Files\TeamViewer\uninstall.exe" -Wait -ArgumentList "/S"
     }
     
     ################### Remove SeaMonkey ###################    
