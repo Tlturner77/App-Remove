@@ -4,7 +4,7 @@
 #   Startup Script to Remove Software
 #	Version for testing with local group policy output file statically set
 ########################################
-$open_file = "Open File" 
+$open_file = "List of Removed Software" 
 out-file -Append -FilePath C:\IT\remove-apps.log -InputObject $open_file
 $installed_apps32 = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*  |Select-Object DisplayName,PSChildName, UninstallString
 $installed_apps64 = Get-ItemProperty HKLM:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*  |Select-Object DisplayName,PSChildName, UninstallString
@@ -132,7 +132,7 @@ $badapps = @(
       start-process -FilePath "C:\Program Files (x86)\SeaMonkey\uninstall\helper.exe" -Wait -ArgumentList "/s"
     } 
     
-    ################### Remove Thunderbird ################### 
+    ################### Remove Thunderbird 64bit ################### 
     if(test-path "C:\Program Files\Mozilla Thunderbird\uninstall\helper.exe")
     {
       LogWrite "Removing Thunderbird 64bit"
