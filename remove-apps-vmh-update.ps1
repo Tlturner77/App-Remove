@@ -29,16 +29,16 @@ $winzipargs = "/x t:\wzipse40.msi /qn"
 
 #ARRAY OF APPS THAT YOU WANT TO HAVE REMOVED
 $badapps = @(
-  '{FADD87FD-83C7-40B4-9180-EA9371C1A348}',   #Open Office
-  '{F27DBA46-80E1-4858-9285-19198FFFB43D}',   #GOOGLE EARTH TEST SYSTEM
-  '{4EEF2644-700F-46F8-9655-915145248986}',   #PUTTY TEST SYSTEM
-  '{2408F291-807B-43A8-9731-61C35F046E1B}',   #ROYAL TS TEST SYSTEM
-  '{CD95F661-A5C4-44F5-A6AA-ECDD91C24143}',   #wINZIP TEST SYSTEM
-  '{FDB77018-8B16-456D-AAC9-0CFA01A36D92}',   #putty
+  '{FADD87FD-83C7-40B4-9180-EA9371C1A348}',   # Open Office
+  '{F27DBA46-80E1-4858-9285-19198FFFB43D}',   # GOOGLE EARTH TEST SYSTEM
+  '{4EEF2644-700F-46F8-9655-915145248986}',   # PUTTY TEST SYSTEM
+  '{2408F291-807B-43A8-9731-61C35F046E1B}',   # ROYAL TS TEST SYSTEM
+  '{CD95F661-A5C4-44F5-A6AA-ECDD91C24143}',   # wINZIP TEST SYSTEM
+  '{FDB77018-8B16-456D-AAC9-0CFA01A36D92}',   # putty
   '{4748282E-2448-11E8-81BC-53A8D56EE868}',   # GeoGebra Classic
   '{D86F0E67-2C02-4DFF-A46A-6871BA809A51}',   # OpenOffice 4.1.13 
   '{AC76BA86-7AD7-FFFF-7B44-AE1401753200}',   # Adobe Acrobat MUI
-  '{9A4EBA01-3CB0-4941-88D0-63CC54279A83}',   #boxcryptor 
+  '{9A4EBA01-3CB0-4941-88D0-63CC54279A83}',   # boxcryptor 
   '{767359F7-2B5F-4D4E-B22A-7CE210BCE249}',   # Node.js update
   '{e143ddcf-9377-4de1-bf77-8cff028b1d96}',   # Camtasia 2022
   '{7E265513-8CDA-4631-B696-F40D983F3B07}_is1' 
@@ -191,7 +191,7 @@ $badapps = @(
                 if ($app.UninstallString -match $match_str) {
                 
                 $argumentlist =  "/x", $app.PSChildName , "/quiet /norestart"
-                LogWrite "Removing " $app.DisplayName
+                LogWrite "Removing  $app.DisplayName"
                 write-host "Removing IF: " $app.DisplayName " Command: " $argumentlist
                 Start-Process msiexec.exe -Wait -ArgumentList $argumentlist
                 # write-host "full command: " $retval
@@ -204,7 +204,7 @@ $badapps = @(
                     $first, $last = $_.Matches[0].Groups[1..2].Value
                     # write-host $last "," $first
                     $aargs = " /uninstall", "/silent","/s" 
-                    LogWrite "Removing " $app.DisplayName
+                    LogWrite "Removing  $app.DisplayName"
                     write-host "Removing ELSE: " $app.DisplayName "Command: " $first
                     Start-Process -Wait $first -ArgumentList $aargs
                     }
