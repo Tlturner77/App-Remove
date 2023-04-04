@@ -69,12 +69,18 @@ $badapps = @(
   )
    # Start-Process msiexec.exe -ArgumentList $winzipargs
 
-    Start-Process -FilePath "C:\Windows\SysWOW64\msiexec.exe" -Wait -ArgumentList "/x T:\LibreOffice_7.5.1_Win_x86-64.msi /qn"
+    
     Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {767359F7-2B5F-4D4E-B22A-7CE210BCE249} /quiet"
     Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {C0C2B2B6-3890-48FC-A8F8-60ACC986953D} /quiet"
     Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {59614D31-548E-46E6-AD64-FF6D6E10CF0C} /qn"
-    Start-Process -FilePath "C:\Windows\SysWOW64\msiexec.exe" -Wait -ArgumentList "/x C:\IT\LibreOffice_7.5.2_Win_x86-64.msi /qn"
-
+    # Start-Process -FilePath "C:\Windows\SysWOW64\msiexec.exe" -Wait -ArgumentList "/x C:\IT\LibreOffice_7.5.2_Win_x86-64.msi /qn"
+    
+    ################### Remove LibreOffice ###################
+    if(test-path "C:\Program Files\LibreOffice")
+    { 
+      LogWrite "Remove LibreOffice"
+      Start-Process -FilePath "C:\Windows\SysWOW64\msiexec.exe" -Wait -ArgumentList "/x T:\LibreOffice_7.5.1_Win_x86-64.msi /qn"
+    }
 
     ################### Remove dropbox 32bit ###################
     if(test-path "C:\Program Files (x86)\Dropbox\Client\DropboxUninstaller.exe")
