@@ -33,7 +33,7 @@ $badapps = @(
   '{F27DBA46-80E1-4858-9285-19198FFFBF3D}',   # GOOGLE EARTH TEST SYSTEM
   '{4EEF2644-700F-46F8-9655-915145248986}',   # PUTTY TEST SYSTEM
   '{2408F291-807B-43A8-9731-61C35F046E1B}',   # ROYAL TS TEST SYSTEM
-  '{CD95F661-A5C4-44F5-A6AA-ECDD91C24143}',   # wINZIP TEST SYSTEM
+  '{CD95F661-A5C4-44F5-A6AA-ECDD91C24143}',   # WINZIP TEST SYSTEM
   '{FDB77018-8B16-456D-AAC9-0CFA01A36D92}',   # putty
   '{4748282E-2448-11E8-81BC-53A8D56EE868}',   # GeoGebra Classic
   '{D86F0E67-2C02-4DFF-A46A-6871BA809A51}',   # OpenOffice 4.1.13 
@@ -70,7 +70,7 @@ $badapps = @(
     
    ## Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {767359F7-2B5F-4D4E-B22A-7CE210BCE249} /quiet"
    ## Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {C0C2B2B6-3890-48FC-A8F8-60ACC986953D} /quiet"
-   ## Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {59614D31-548E-46E6-AD64-FF6D6E10CF0C} /qn"
+   ## Start-Process -FilePath "msiexec.exe" -Wait -ArgumentList "/x {59614D31-548E-46E6-AD64-FF6D6E10CF0C} /qn"     #CD Burner XP
     # Start-Process -FilePath "C:\Windows\SysWOW64\msiexec.exe" -Wait -ArgumentList "/x C:\IT\LibreOffice_7.5.2_Win_x86-64.msi /qn"
     
     ################### Remove LibreOffice ###################
