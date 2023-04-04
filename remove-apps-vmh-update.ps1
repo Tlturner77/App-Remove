@@ -41,8 +41,7 @@ $badapps = @(
   '{9A4EBA01-3CB0-4941-88D0-63CC54279A83}',   # boxcryptor 
   '{767359F7-2B5F-4D4E-B22A-7CE210BCE249}',   # Node.js update
   '{e143ddcf-9377-4de1-bf77-8cff028b1d96}',   # Camtasia 2022
-  '{7E265513-8CDA-4631-B696-F40D983F3B07}_is1' 
-  '{50229C72-539F-4E65-BEB5-F0491C5074B7}',   # 64 Bit HP CIO Components Installer     
+ # '{50229C72-539F-4E65-BEB5-F0491C5074B7}',   # 64 Bit HP CIO Components Installer     
   '{59221905-940E-4B6D-9316-EFCD56952394}',   # Camtasia 2020    
   '{6ADCC315-C91D-4A29-A4EF-A2A27BC82CBC}',   # Boxcryptor       
   '{DE181B35-ACEF-4DB0-86D9-731D5767ABB1}',   # Google Earth Pro  
