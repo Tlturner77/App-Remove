@@ -76,6 +76,18 @@ $badapps = @(
     Start-Process -FilePath "C:\Windows\SysWOW64\msiexec.exe" -Wait -ArgumentList "/x C:\IT\LibreOffice_7.5.2_Win_x86-64.msi /qn"
 
 
+    ################### Remove dropbox 32bit ###################
+    if(test-path "C:\Program Files (x86)\Dropbox\Client\DropboxUninstaller.exe")
+    {
+      LogWrite "Removing Drobpox 32bit"
+      Start-Process "C:\Program Files (x86)\Dropbox\Client\DropboxUninstaller.exe" -Wait -ArgumentList "/InstallType:MACHINE"
+    }
+    ################### Remove dropbox ###################
+    if(test-path "C:\Program Files\Dropbox\Client\DropboxUninstaller.exe")
+    {
+      LogWrite "Removing Drobpox"
+      Start-Process "C:\Program Files\Dropbox\Client\DropboxUninstaller.exe" -Wait -ArgumentList "/InstallType:MACHINE"
+    }   
     ################### Remove Firefox ###################
     if(test-path "C:\Program Files\Mozilla Firefox\uninstall\helper.exe")
     { 
